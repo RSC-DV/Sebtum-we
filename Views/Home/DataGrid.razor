@@ -1,0 +1,57 @@
+@page "/datagrid"
+
+<h3>DataGrid Example</h3>
+
+<table class="table" @onclick="TableRowClicked">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in items)
+{
+    <tr @onclick="() => TableRowClicked(item)">
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.Email</td>
+    </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <h4>Selected Item:</h4>
+    <p>@selectedItemInfo</p>
+</div>
+
+@code {
+    List<Item> items;
+    string selectedItemInfo = "";
+
+    protected override void OnInitialized()
+    {
+        // Здесь вы можете загрузить данные из вашей базы данных или другого источника данных
+        items = new List<Item>
+        {
+            new Item { Id = 1, Name = "John Doe", Email = "john@example.com" },
+            new Item { Id = 2, Name = "Jane Smith", Email = "jane@example.com" }
+        };
+    }
+
+    public class Item
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
+
+    void TableRowClicked(Item clickedItem)
+{
+    // Обработка клика на таблице
+    // Используйте информацию о кликнутой строке (clickedItem)
+    selectedItemInfo = "Selected item: " + clickedItem.Id + " - " + clickedItem.Name + " - " + clickedItem.Email;
+}
+}

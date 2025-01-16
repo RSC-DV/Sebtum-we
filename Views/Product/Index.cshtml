@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Product>
+
+<!-- Стили для категорий -->
+
+
+<!-- HTML-код для таблицы -->
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Категория</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            var rowClass = product.Category switch
+            {
+                "Электроника" => "green",
+                "Одежда" => "blue",
+                "Аксессуары" => "lavender",
+                _ => "default-class"
+            };
+            <tr class="@rowClass">
+                <td><a href="/home/@product.Id">@product.Id</a></td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Category</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({language: {
+                    
+                    url: '/lib/datatables/js/russian.json'
+                }
+               
+            });
+        });
+    </script>
+}
