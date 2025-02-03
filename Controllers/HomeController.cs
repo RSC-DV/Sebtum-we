@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 namespace Sebtum.Controllers;
 
-[Authorize]
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -38,14 +38,10 @@ public class HomeController : Controller
             return "Привет"+a;
         }
 
-    [Authorize(Roles = "Admin")]
+    
     public IActionResult Privacy()
     {
-        var user = User;
-        if (user.IsInRole("Admin"))
-        {
-
-        }
+        
         return View();
     }
     
