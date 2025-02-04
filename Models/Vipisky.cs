@@ -66,7 +66,7 @@ namespace Sebtum.Models
         private const string Патерн_Период = @"период 20\d\d\d\d";
 
         // Паттерн для поиска лицевого счета
-        private const string Патерн_ЛС = @"13[0-9\-]+";
+        private const string Патерн_ЛС = @"18[0-9\-]+";
 
         // Паттерн для поиска адреса с кодом региона "68"
 
